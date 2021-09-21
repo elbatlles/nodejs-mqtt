@@ -42,7 +42,7 @@ import { DataTypes, Model, Optional } from "sequelize";
 import MetricModel from "./metric";
 
 
-const setupDataBase = require("../lib/db");
+//const setupDataBase = require("../lib/db");
 interface AgentAttributes {
   uuid: string;
 
@@ -100,7 +100,7 @@ AgentModel.init(
       allowNull: false,
     },
     pid: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     connected: {
@@ -114,6 +114,7 @@ AgentModel.init(
     paranoid: true,
   }
 );
-AgentModel.hasMany(MetricModel);
+
+//AgentModel.hasOne(MetricModel);
 
 export default AgentModel;

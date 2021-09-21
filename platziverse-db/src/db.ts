@@ -12,7 +12,8 @@ module.exports = function setupDataBase(config:any) {
   return Sequelize;
 };
 */
-
+require('dotenv').config()
+var debug = require('debug')('platziverse:sequelizeConnection')
 import { Dialect, Sequelize } from 'sequelize'
 
 const dbName = process.env.DB_NAME as string
@@ -21,9 +22,14 @@ const dbHost = process.env.DB_HOST
 const dbDriver = process.env.DB_DRIVER as Dialect
 const dbPassword = process.env.DB_PASSWORD
 
-const sequelizeConnection = new Sequelize(dbName, dbUser, dbPassword, {
+const sequelizeConnection = new Sequelize(dbName, dbUser,dbPassword, {
   host: dbHost,
-  dialect: dbDriver
+  dialect: dbDriver,
+  logging:s => debug(s),
+  
 })
 
+
 export default sequelizeConnection
+
+ 

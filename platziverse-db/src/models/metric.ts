@@ -25,7 +25,7 @@ import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "../db";
 import AgentModel from "./agent";
 
-const setupDataBase = require("../lib/db");
+//const setupDataBase = require("../lib/db");
 interface MetricAttributes {
   type: string;
   value: Text;
@@ -58,5 +58,5 @@ MetricModel.init(
     paranoid: true,
   }
 );
-MetricModel.belongsTo(AgentModel);
+
 export default MetricModel;
