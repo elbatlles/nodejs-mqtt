@@ -3,15 +3,16 @@ import AgentModel from "./models/agent";
 import MetricModel from "./models/metric";
 require('dotenv').config();
 import chalk = require("chalk");
-import inquirer = require("inquirer");
+import defaults from "defaults";
 
 module.exports = async function (config:any) {
   const agent = AgentModel;
   const metric = MetricModel;
 
+  const sequelize = sequelizeConnection
   MetricModel.belongsTo(AgentModel);
   AgentModel.hasMany(MetricModel);
-  await sequelizeConnection.authenticate().then(() => {
+  await sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
  
   })
@@ -22,9 +23,9 @@ module.exports = async function (config:any) {
   });
  
  if(process.env.SETUP){
-    await sequelizeConnection.sync({ force: true });
+    await sequelize.sync({ force: true });
     console.log("All models were synchronized successfully.");
-    process.exit(0)
+   
  }
 
   
